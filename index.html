@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webcam Access Demo</title>
+  </head>
+  <body>
+    <h1>Webcam Access Demo</h1>
+    <video id="webcam" width="640" height="480" autoplay></video>
+    <script>
+      const webcam = document.getElementById('webcam');
+
+      if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices
+          .getUserMedia({ video: true })
+          .then((stream) => {
+            webcam.srcObject = stream;
+          })
+          .catch((error) => {
+            console.error('Error accessing webcam:', error);
+          });
+      } else {
+        console.error('getUserMedia not supported in this browser.');
+      }
+    </script>
+  </body>
+</html>
